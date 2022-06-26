@@ -178,7 +178,6 @@ static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstackvis(const Arg *arg);
-static void focusstackhid(const Arg *arg);
 static void focusstack(int inc, int vis);
 static Atom getatomprop(Client *c, Atom prop);
 static int getrootptr(int *x, int *y);
@@ -933,12 +932,6 @@ void
 focusstackvis(const Arg *arg)
 {
 	focusstack(arg->i, 0);
-}
-
-void
-focusstackhid(const Arg *arg)
-{
-	focusstack(arg->i, 1);
 }
 
 void
