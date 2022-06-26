@@ -22,9 +22,14 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"kitty", NULL,
-	"megasync", NULL,
+	"xinput", "set-prop", "'ETPS/2", "Elantech", "Touchpad'", "'libinput", "Tapping", "Enabled'", "1", NULL,
+	"xinput", "set-prop", "'ETPS/2", "Elantech", "Touchpad'", "'libinput", "Middle", "Emulation", "Enabled'", "1", NULL,
+
+	"xrandr", "--output", "eDP-1", "--primary", "--output", "HDMI-1", "--off", "--output", "DP-1", "--off", NULL,
+	"xrandr", "--output", "HDMI-1-0", "--auto", "--right-of", "eDP-1", NULL,
+	"megasync", "&", NULL,
 	"dunst", NULL,
+	"nitrogen", "--restore", "NULL",
 	NULL /* terminate */
 };
 
@@ -74,12 +79,16 @@ static const char *termcmd[]  = { "kitty", NULL };
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"s", "kitty", "--title", "scratchpad", NULL}; 
 
+/* Brightness commands */
+static const char *brightnessup[] = {"light", "-A", "5", NULL};
+static const char *brightnessdown[] = {"light", "-U", "5", NULL};
+
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_s,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_s,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
@@ -115,6 +124,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{0,           XF86XK_MonBrightnessUp,      spawn,          {.v = brightnessup} },
+	{0,         XF86XK_MonBrightnessDown,      spawn,          {.v = brightnessdown} },
 };
 
 /* button definitions */
