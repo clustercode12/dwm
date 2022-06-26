@@ -7,4 +7,4 @@ xrandr --output eDP-1 --primary --output HDMI-1 --off --output DP-1 --off
 xrandr --output HDMI-1-0 --auto --right-of eDP-1
 
 nitrogen --restore
-megasync
+megasync &
