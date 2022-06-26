@@ -21,18 +21,6 @@ static const char *colors[][3]      = {
 	[SchemeHid]  = { col_cyan,  col_gray1, col_gray2  },
 };
 
-static const char *const autostart[] = {
-	"xinput", "set-prop", "'ETPS/2", "Elantech", "Touchpad'", "'libinput", "Tapping", "Enabled'", "1", NULL,
-	"xinput", "set-prop", "'ETPS/2", "Elantech", "Touchpad'", "'libinput", "Middle", "Emulation", "Enabled'", "1", NULL,
-
-	"xrandr", "--output", "eDP-1", "--primary", "--output", "HDMI-1", "--off", "--output", "DP-1", "--off", NULL,
-	"xrandr", "--output", "HDMI-1-0", "--auto", "--right-of", "eDP-1", NULL,
-	"megasync", "&", NULL,
-	"dunst", NULL,
-	"nitrogen", "--restore", "NULL",
-	NULL /* terminate */
-};
-
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
