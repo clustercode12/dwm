@@ -72,10 +72,6 @@ static const char *termcmd[]  = { "kitty", NULL };
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"s", "kitty", "--title", "scratchpad", NULL}; 
 
-/* Brightness commands */
-static const char *brightnessup[] = {"light", "-A", "5", NULL};
-static const char *brightnessdown[] = {"light", "-U", "5", NULL};
-
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -117,8 +113,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{0,           XF86XK_MonBrightnessUp,      spawn,          {.v = brightnessup} },
-	{0,         XF86XK_MonBrightnessDown,      spawn,          {.v = brightnessdown} },
+	{0,           XF86XK_MonBrightnessUp,      spawn,          SHCMD("light -A 5") },
+	{0,         XF86XK_MonBrightnessDown,      spawn,          SHCMD("light -U 5") },
+	{0,          XF86XK_AudioRaiseVolume,      spawn,          SHCMD("amixer -q set Master 5%+; pkill -RTMIN+10 dwmblocks") },
+	{0,          XF86XK_AudioLowerVolume,      spawn,          SHCMD("amixer -q set Master 5%-; pkill -RTMIN+10 dwmblocks") },
+	{0,                 XF86XK_AudioMute,      spawn,          SHCMD("amixer -q set Master togglemute; pkill -RTMIN+10 dwmblocks") },
 };
 
 /* button definitions */
