@@ -19,11 +19,11 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#ffeb3b";
 static const char col_blue[]        = "#3D5AFE";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray1, col_cyan,  col_cyan  },
-	[SchemeHid]  = { col_cyan,  col_gray1, col_gray2  },
+static const char *colors[][4]      = {
+	/*               fg         bg         border      float*/
+	[SchemeNorm] = { col_gray4, col_gray1, col_gray2, col_gray2},
+	[SchemeSel]  = { col_gray1, col_cyan,  col_cyan,  col_blue  },
+	[SchemeHid]  = { col_cyan,  col_gray1, col_gray2, col_gray2  },
 };
 
 /* tagging */
