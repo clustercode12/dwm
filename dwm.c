@@ -209,8 +209,8 @@ static unsigned int getsystraywidth();
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
-static void hide(const Arg *arg);
 static void hidewin(Client *c);
+static void hideunhide(const Arg *arg);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
@@ -244,7 +244,6 @@ static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
-static void show(const Arg *arg);
 static void showwin(Client *c);
 static void showhide(Client *c);
 static void sigchld(int unused);
@@ -1218,14 +1217,6 @@ grabkeys(void)
 }
 
 void
-hide(const Arg *arg)
-{
-	hidewin(selmon->sel);
-	focus(NULL);
-	arrange(selmon);
-}
-
-void
 hidewin(Client *c) {
 	if (!c || HIDDEN(c))
 		return;
@@ -1274,6 +1265,29 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
 	return 1;
 }
 #endif /* XINERAMA */
+
+void
+hideunhide(const Arg *arg)
+{
+	Client *c, *cur;
+	cur = selmon->sel;
+	if (cur && arg -> i > 0) {
+		hidewin(cur);
+		focus(NULL);
+		arrange(cur->mon);
+	} else if (arg->i < 0) {
+		for (c = selmon->clients; c; c=c->next) {
+			if ((HIDDEN(c) && (ISVISIBLE(c)))) {
+				showwin(c);
+				focus(c);
+				restack(selmon);
+				break;
+			}
+		}
+	}
+
+	restack(selmon);
+}
 
 void
 keypress(XEvent *e)
@@ -2030,14 +2044,6 @@ seturgent(Client *c, int urg)
 	wmh->flags = urg ? (wmh->flags | XUrgencyHint) : (wmh->flags & ~XUrgencyHint);
 	XSetWMHints(dpy, c->win, wmh);
 	XFree(wmh);
-}
-
-void
-show(const Arg *arg)
-{
-	if (selmon->hidsel)
-		selmon->hidsel = 0;
-	showwin(selmon->sel);
 }
 
 void
