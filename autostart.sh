@@ -8,4 +8,6 @@ xrandr --output HDMI-1-0 --auto --right-of eDP-1
 
 nitrogen --restore
 megasync &
+
+killall dwmblocks && wait 3
 dwmblocks &
