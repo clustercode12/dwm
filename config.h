@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;       /* border pixel of windows */
 static const unsigned int gappx     = 3;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -36,8 +36,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     iscentered isfloating   monitor    scratch key */
 	{ "Gimp",     NULL,       NULL,       0,            0,            1,           -1,        0  },
-	{ "firefox",  NULL,       NULL,       1 << 8,       0,            0,           -1,        0  },
+	{ "Spotify",  NULL,       NULL,       1 << 8,       0,            0,           -1,        0  },
 	{ NULL,       NULL,   "scratchpad",   0,            1,            1,           -1,       's' },
+	{ NULL,       NULL,      "nnn",       0,            1,            1,           -1,       'a' },    
 };
 
 /* layout(s) */
@@ -72,6 +73,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"s", "kitty", "--title", "scratchpad", NULL}; 
+static const char *scratchpadnnn[] = {"a", "kitty", "--title", "nnn", "nnn", NULL};
 
 #include "movestack.c"
 static Key keys[] = {
@@ -79,6 +81,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_s,      togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_a,      togglescratch,  {.v = scratchpadnnn } }, 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
