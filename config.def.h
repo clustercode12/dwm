@@ -30,15 +30,11 @@ static const char *colors[][4]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
 	/* class      instance    title       tags mask     iscentered isfloating   monitor    scratch key */
-	{ "Gimp",     NULL,       NULL,       0,            0,            1,           -1,        0  },
 	{ "Spotify",  NULL,       NULL,       1 << 8,       0,            0,           -1,        0  },
 	{ NULL,       NULL,   "scratchpad",   0,            1,            1,           -1,       's' },
-	{ NULL,       NULL,      "nnn",       0,            1,            1,           -1,       'a' },    
+	{ NULL,       NULL,       "nnn",       0,            1,            1,           -1,       'a' },    
+	{ "MEGAsync", NULL,       NULL,       0,            1,            1,           -1,        0  },
 };
 
 /* layout(s) */
