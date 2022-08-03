@@ -34,8 +34,8 @@ static const Rule rules[] = {
 	{ "Spotify",  NULL,       NULL,       1 << 8,       0,            0,            0,        0  },
 	{ "discord",  NULL,       NULL,       1 << 7,       0,            0,            0,        0  },
 	{ "MEGAsync", NULL,       NULL,       0,            1,            1,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,            1,            1,            0,       's' },
-	{ NULL,       NULL,       "lf",       0,            1,            1,            0,       'a' },    
+	{ NULL,       NULL,   "scratchpad",   0,           1,            1,             0,       's' },
+	{ NULL,       NULL,       "lf",       0,           1,            1,             0,       'a' },    
 };
 
 /* layout(s) */
@@ -73,7 +73,6 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *scratchpadcmd[] = {"s", "kitty", "--title", "scratchpad", NULL}; 
 static const char *scratchpadnnn[] = {"a", "kitty", "--title", "lf", "lf", NULL};
 
-#include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
