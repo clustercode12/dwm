@@ -2,7 +2,6 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;       /* border pixel of windows */
-static const unsigned int gappx     = 3;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
@@ -34,8 +33,8 @@ static const Rule rules[] = {
 	{ "Spotify",  NULL,       NULL,       1 << 8,       0,            0,            0,        0  },
 	{ "discord",  NULL,       NULL,       1 << 7,       0,            0,            0,        0  },
 	{ "MEGAsync", NULL,       NULL,       0,            1,            1,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,           1,            1,             0,       's' },
-	{ NULL,       NULL,       "lf",       0,           1,            1,             0,       'a' },    
+	{ NULL,       NULL,   "scratchpad",   0,            1,            1,            0,       's' },
+	{ NULL,       NULL,       "lf",       0,            1,            1,            0,       'a' },    
 };
 
 /* layout(s) */
