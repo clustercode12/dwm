@@ -12,5 +12,6 @@ setxkbmap -option caps:swapescape
 nitrogen --restore
 megasync &
 
-killall dwmblocks && wait 3
-dwmblocks &
+( killall dwmblocks ; sleep 1 ; dwmblocks ) &
+
+( killall /usr/share/discord/Discord && sleep 1 && discord ) &

@@ -2329,16 +2329,18 @@ togglescratch(const Arg *arg)
 	}
 
 	if (found) {
-		c->tags = ISVISIBLE(c) ? 0 : selmon->tagset[selmon->seltags];
-		focus(NULL);
+		c->tags = ISVISIBLE(c) ? 0 : c->mon->tagset[c->mon->seltags];
+		// focus(NULL);
 		arrange(c->mon);
 
 		if (ISVISIBLE(c)) {
 			focus(c);
 			restack(c->mon);
+		} else {
+			focus(prevclient);
 		}
 
-	} else{
+	} else {
 		spawnscratch(arg);
 	}
 }
