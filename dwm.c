@@ -2225,18 +2225,24 @@ togglefloating(const Arg *arg)
 void
 togglescratch(const Arg *arg)
 {
-	Client *c;
+	Monitor *m;
+	Client *c = NULL;
 	unsigned int found = 0;
 
-	for (c = selmon->clients; c && !(found = c->scratchkey == ((char**)arg->v)[0][0]); c = c->next);
+	for (m = mons; m; m = m->next)
+	{
+		if (found) break;
+		for (c = m->clients; c && !(found = c->scratchkey == ((char**)arg->v)[0][0]); c = c->next);
+	}
+
 	if (found) {
 		c->tags = ISVISIBLE(c) ? 0 : selmon->tagset[selmon->seltags];
 		focus(NULL);
-		arrange(selmon);
+		arrange(c->mon);
 
 		if (ISVISIBLE(c)) {
 			focus(c);
-			restack(selmon);
+			restack(c->mon);
 		}
 
 	} else{

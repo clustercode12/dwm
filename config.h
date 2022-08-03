@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+
 
 /* appearance */
 static const unsigned int borderpx  = 2;       /* border pixel of windows */
@@ -31,10 +31,11 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     iscentered isfloating   monitor    scratch key */
-	{ "Spotify",  NULL,       NULL,       1 << 8,       0,            0,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,            1,            1,           -1,       's' },
-	{ NULL,       NULL,       "nnn",       0,            1,            1,           -1,       'a' },    
+	{ "Spotify",  NULL,       NULL,       1 << 8,       0,            0,            0,        0  },
+	{ "discord",  NULL,       NULL,       1 << 7,       0,            0,            0,        0  },
 	{ "MEGAsync", NULL,       NULL,       0,            1,            1,           -1,        0  },
+	{ NULL,       NULL,   "scratchpad",   0,            1,            1,            0,       's' },
+	{ NULL,       NULL,       "lf",       0,            1,            1,            0,       'a' },    
 };
 
 /* layout(s) */
@@ -70,7 +71,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"s", "kitty", "--title", "scratchpad", NULL}; 
-static const char *scratchpadnnn[] = {"a", "kitty", "--title", "nnn", "nnn", NULL};
+static const char *scratchpadnnn[] = {"a", "kitty", "--title", "lf", "lf", NULL};
 
 #include "movestack.c"
 static Key keys[] = {
