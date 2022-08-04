@@ -225,6 +225,7 @@ static void movestack(const Arg *arg);
 static Client *nexttiled(Client *c);
 static void pop(Client *);
 static void propertynotify(XEvent *e);
+static void resetnmaster(const Arg *arg);
 static void quit(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
 static void removesystrayicon(Client *i);
@@ -612,7 +613,7 @@ cleanup(void)
 		cleanupmon(mons);
 
 	if (showsystray) {
-		XUnmapWindow(dpy, systray->win);
+	XUnmapWindow(dpy, systray->win);
 		XDestroyWindow(dpy, systray->win);
 		free(systray);
 	}
@@ -1709,6 +1710,13 @@ removesystrayicon(Client *i)
 	if (ii)
 		*ii = i->next;
 	free(i);
+}
+
+void
+resetnmaster(const Arg *arg)
+{
+	selmon->nmaster = selmon->pertag->nmasters[selmon->pertag->curtag] = 1;
+	arrange(selmon);
 }
 
 void
